@@ -17,6 +17,8 @@
  */
 #include <iostream>
 
+#define BUFSIZE 100001
+
 using namespace std;
 
 void insertion_sort(int *a, int len);
@@ -24,14 +26,13 @@ void print_array(int *a, int len);
 
 int main()
 {
-    int a[1000];
+    int a[BUFSIZE];
     int n;
     cin >> n;
     for(int i=0; i<n; i++) {
         cin >> a[i];
     }
-    /* insertion_sort(a, n); */
-    quick_sort(a, 0, n-1);
+    insertion_sort(a, n);
     print_array(a, n);
     return 0;
 }
@@ -46,5 +47,11 @@ void insertion_sort(int *a, int len)
             j--;
         }
         a[j+1] = t;
+    }
+}
+
+void print_array(int *a, int len) {
+    for(int i=0; i<len; i++) {
+        cout << a[i] << endl;
     }
 }
