@@ -1,4 +1,4 @@
-toys
+Toys and Implementation of some classic algorithms.
 ====
 
-玩具程序和算法练习
+Recently I am reading the CLRS and I prepare to implement most of algorithms in this book.
