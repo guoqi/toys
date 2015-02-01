@@ -1,6 +1,5 @@
 demo.d/
 oj/
 algos/sort/bin/
-# algos/sort/genrate.py
-# algos/sort/*.txt
-blog/
+algos/sort/genrate.py
+algos/sort/*.txt
