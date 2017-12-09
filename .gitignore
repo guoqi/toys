@@ -4,3 +4,4 @@ algos/sort/bin/
 algos/sort/genrate.py
 algos/sort/*.txt
 Resume/
+.gitignore
