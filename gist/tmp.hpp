@@ -38,6 +38,28 @@ namespace trait
         static constexpr int val = 1;
     };
 
+    /**
+     * trait example
+     * Notice: void_t is required and it forces compiler to substitute its parameter. 
+     * It can be fail if type T has no member type named value, and success verse vice. This is so-called SFINAE
+     */
+    template<typename T, typename = std::void_t<>>
+    struct is_has_value : std::false_type {};
+    template<typename T>
+    struct is_has_value<T, std::void_t<typename T::value>> : std::true_type {};
+
+    /**
+     * A common trait detector
+     * It has the same structure as is_has_value but detect not only whether T has a member type named value, but also any attribute T must meet.
+     */
+    template<typename T, template<typename> class Op, typename = std::void_t<>>
+    struct detector : std::false_type {};
+    template<typename T, template<typename> class Op>
+    struct detector<T, Op, std::void_t<Op<T>>> : std::true_type {};
+
+    template<typename T>
+    using has_value = typename T::value;
+
 }
 
 /*
@@ -162,27 +184,8 @@ struct WHILE
 };
 
 
-/**
- * trait example
- * Notice: void_t is required and it forces compiler to substitute its parameter. 
- * It can be fail if type T has no member type named value, and success verse vice. This is so-called SFINAE
- */
-template<typename T, typename = std::void_t<>>
-struct is_has_value : std::false_type {};
-template<typename T>
-struct is_has_value<T, std::void_t<typename T::value>> : std::true_type {};
-
-/**
- * A common trait detector
- * It has the same structure as is_has_value but detect not only whether T has a member type named value, but also any attribute T must meet.
- */
-template<typename T, template<typename> class Op, typename = std::void_t<>>
-struct detector : std::false_type {};
-template<typename T, template<typename> class Op>
-struct detector<T, Op, std::void_t<Op<T>>> : std::true_type {};
-
-template<typename T>
-using has_value = typename T::value;
+template<typename ...Args>
+struct print_types;
 
 }
 

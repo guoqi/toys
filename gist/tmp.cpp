@@ -9,6 +9,7 @@
 using namespace std;
 using namespace tmp;
 using namespace tmp::arith;
+using namespace tmp::trait;
 
 template<int N>
 struct sum
